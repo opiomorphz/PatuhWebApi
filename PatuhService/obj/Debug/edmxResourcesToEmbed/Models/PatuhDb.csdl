@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatuhModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="PatuhEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ErrorLogs" EntityType="PatuhModel.ErrorLog" />
+    <EntitySet Name="MsMenus" EntityType="PatuhModel.MsMenu" />
+    <EntitySet Name="MsModules" EntityType="PatuhModel.MsModule" />
+    <EntitySet Name="MsPages" EntityType="PatuhModel.MsPage" />
+    <EntitySet Name="MsSerials" EntityType="PatuhModel.MsSerial" />
+    <EntitySet Name="MsUsers" EntityType="PatuhModel.MsUser" />
+    <EntitySet Name="MsUserRoles" EntityType="PatuhModel.MsUserRole" />
+    <EntitySet Name="MsUserRoleAccesses" EntityType="PatuhModel.MsUserRoleAccess" />
+    <EntitySet Name="UserActivityLogs" EntityType="PatuhModel.UserActivityLog" />
+    <AssociationSet Name="FK_Module_Menu_OneToMany_" Association="PatuhModel.FK_Module_Menu_OneToMany_">
+      <End Role="MsModule" EntitySet="MsModules" />
+      <End Role="MsMenu" EntitySet="MsMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Page_Menu_OneToMany_" Association="PatuhModel.FK_Page_Menu_OneToMany_">
+      <End Role="MsPage" EntitySet="MsPages" />
+      <End Role="MsMenu" EntitySet="MsMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_Page_OneToMany_" Association="PatuhModel.FK_Module_Page_OneToMany_">
+      <End Role="MsModule" EntitySet="MsModules" />
+      <End Role="MsPage" EntitySet="MsPages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_User_OneToMany_" Association="PatuhModel.FK_Module_User_OneToMany_">
+      <End Role="MsModule" EntitySet="MsModules" />
+      <End Role="MsUser" EntitySet="MsUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_UserRole_OneToMany_" Association="PatuhModel.FK_Module_UserRole_OneToMany_">
+      <End Role="MsModule" EntitySet="MsModules" />
+      <End Role="MsUserRole" EntitySet="MsUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Page_UserRoleAccess_OneToMany_" Association="PatuhModel.FK_Page_UserRoleAccess_OneToMany_">
+      <End Role="MsPage" EntitySet="MsPages" />
+      <End Role="MsUserRoleAccess" EntitySet="MsUserRoleAccesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User_OneToMany_" Association="PatuhModel.FK_UserRole_User_OneToMany_">
+      <End Role="MsUserRole" EntitySet="MsUserRoles" />
+      <End Role="MsUser" EntitySet="MsUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_UserRoleAccess_OneToMany_" Association="PatuhModel.FK_Module_UserRoleAccess_OneToMany_">
+      <End Role="MsUserRole" EntitySet="MsUserRoles" />
+      <End Role="MsUserRoleAccess" EntitySet="MsUserRoleAccesses" />
+    </AssociationSet>
+    <EntitySet Name="MsMobileUserProfiles" EntityType="PatuhModel.MsMobileUserProfile" />
+  </EntityContainer>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TsLog" Type="DateTime" Nullable="false" />
+    <Property Name="PageName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="ErrorMessage" Type="String" Nullable="false" MaxLength="8000" Unicode="false" FixedLength="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="MsMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="ModuleID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="PageID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Seq" Type="Int32" Nullable="false" />
+    <Property Name="MenuText" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="MsModule" Relationship="PatuhModel.FK_Module_Menu_OneToMany_" FromRole="MsMenu" ToRole="MsModule" />
+    <NavigationProperty Name="MsPage" Relationship="PatuhModel.FK_Page_Menu_OneToMany_" FromRole="MsMenu" ToRole="MsPage" />
+  </EntityType>
+  <EntityType Name="MsModule">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="ModuleDesc" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Info1" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Info2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Info3" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="MsMenus" Relationship="PatuhModel.FK_Module_Menu_OneToMany_" FromRole="MsModule" ToRole="MsMenu" />
+    <NavigationProperty Name="MsPages" Relationship="PatuhModel.FK_Module_Page_OneToMany_" FromRole="MsModule" ToRole="MsPage" />
+    <NavigationProperty Name="MsUsers" Relationship="PatuhModel.FK_Module_User_OneToMany_" FromRole="MsModule" ToRole="MsUser" />
+    <NavigationProperty Name="MsUserRoles" Relationship="PatuhModel.FK_Module_UserRole_OneToMany_" FromRole="MsModule" ToRole="MsUserRole" />
+  </EntityType>
+  <EntityType Name="MsPage">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="ModuleID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="PageID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="PageName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="PageDesc" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="MsMenus" Relationship="PatuhModel.FK_Page_Menu_OneToMany_" FromRole="MsPage" ToRole="MsMenu" />
+    <NavigationProperty Name="MsModule" Relationship="PatuhModel.FK_Module_Page_OneToMany_" FromRole="MsPage" ToRole="MsModule" />
+    <NavigationProperty Name="MsUserRoleAccesses" Relationship="PatuhModel.FK_Page_UserRoleAccess_OneToMany_" FromRole="MsPage" ToRole="MsUserRoleAccess" />
+  </EntityType>
+  <EntityType Name="MsSerial">
+    <Key>
+      <PropertyRef Name="SerialID" />
+    </Key>
+    <Property Name="SerialID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SerialDesc" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Remark" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="SerialLength" Type="Int32" Nullable="false" />
+    <Property Name="StartNum" Type="Int32" Nullable="false" />
+    <Property Name="EndNum" Type="Int32" Nullable="false" />
+    <Property Name="CurrentNum" Type="Int32" Nullable="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="MsUser">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserRoleID" />
+      <PropertyRef Name="Area" />
+    </Key>
+    <Property Name="ModuleID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="UserRoleID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Area" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="Pwd" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="UserGuid" Type="Guid" />
+    <Property Name="FullName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Info1" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Info2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Info3" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="MsModule" Relationship="PatuhModel.FK_Module_User_OneToMany_" FromRole="MsUser" ToRole="MsModule" />
+    <NavigationProperty Name="MsUserRole" Relationship="PatuhModel.FK_UserRole_User_OneToMany_" FromRole="MsUser" ToRole="MsUserRole" />
+  </EntityType>
+  <EntityType Name="MsUserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="ModuleID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="UserRoleID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="UserRoleDesc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="MsModule" Relationship="PatuhModel.FK_Module_UserRole_OneToMany_" FromRole="MsUserRole" ToRole="MsModule" />
+    <NavigationProperty Name="MsUsers" Relationship="PatuhModel.FK_UserRole_User_OneToMany_" FromRole="MsUserRole" ToRole="MsUser" />
+    <NavigationProperty Name="MsUserRoleAccesses" Relationship="PatuhModel.FK_Module_UserRoleAccess_OneToMany_" FromRole="MsUserRole" ToRole="MsUserRoleAccess" />
+  </EntityType>
+  <EntityType Name="MsUserRoleAccess">
+    <Key>
+      <PropertyRef Name="AccessID" />
+    </Key>
+    <Property Name="AccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="PageID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="CrtUsrID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsCrt" Type="DateTime" Nullable="false" />
+    <Property Name="ModUsrID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TsMod" Type="DateTime" />
+    <Property Name="ActiveFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="MsPage" Relationship="PatuhModel.FK_Page_UserRoleAccess_OneToMany_" FromRole="MsUserRoleAccess" ToRole="MsPage" />
+    <NavigationProperty Name="MsUserRole" Relationship="PatuhModel.FK_Module_UserRoleAccess_OneToMany_" FromRole="MsUserRoleAccess" ToRole="MsUserRole" />
+  </EntityType>
+  <EntityType Name="UserActivityLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TsLog" Type="DateTime" Nullable="false" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FormName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DocumentNo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DocumentStatus" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="ErrorMessage" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+    <Property Name="Remark" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="DebuggerID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="WindowsLogin" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="AppType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AppVersion" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="ApplicationMode" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="DeviceID" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="WebBrowser" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Module_Menu_OneToMany_">
+    <End Role="MsModule" Type="PatuhModel.MsModule" Multiplicity="1" />
+    <End Role="MsMenu" Type="PatuhModel.MsMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsMenu">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Page_Menu_OneToMany_">
+    <End Role="MsPage" Type="PatuhModel.MsPage" Multiplicity="1" />
+    <End Role="MsMenu" Type="PatuhModel.MsMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsPage">
+        <PropertyRef Name="PageID" />
+      </Principal>
+      <Dependent Role="MsMenu">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_Page_OneToMany_">
+    <End Role="MsModule" Type="PatuhModel.MsModule" Multiplicity="1" />
+    <End Role="MsPage" Type="PatuhModel.MsPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsPage">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_User_OneToMany_">
+    <End Role="MsModule" Type="PatuhModel.MsModule" Multiplicity="1" />
+    <End Role="MsUser" Type="PatuhModel.MsUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsUser">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_UserRole_OneToMany_">
+    <End Role="MsModule" Type="PatuhModel.MsModule" Multiplicity="1" />
+    <End Role="MsUserRole" Type="PatuhModel.MsUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsUserRole">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Page_UserRoleAccess_OneToMany_">
+    <End Role="MsPage" Type="PatuhModel.MsPage" Multiplicity="1" />
+    <End Role="MsUserRoleAccess" Type="PatuhModel.MsUserRoleAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsPage">
+        <PropertyRef Name="PageID" />
+      </Principal>
+      <Dependent Role="MsUserRoleAccess">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User_OneToMany_">
+    <End Role="MsUserRole" Type="PatuhModel.MsUserRole" Multiplicity="1" />
+    <End Role="MsUser" Type="PatuhModel.MsUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsUserRole">
+        <PropertyRef Name="UserRoleID" />
+      </Principal>
+      <Dependent Role="MsUser">
+        <PropertyRef Name="UserRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_UserRoleAccess_OneToMany_">
+    <End Role="MsUserRole" Type="PatuhModel.MsUserRole" Multiplicity="1" />
+    <End Role="MsUserRoleAccess" Type="PatuhModel.MsUserRoleAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsUserRole">
+        <PropertyRef Name="UserRoleID" />
+      </Principal>
+      <Dependent Role="MsUserRoleAccess">
+        <PropertyRef Name="UserRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MsMobileUserProfile">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="String" Name="UserID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Pwd" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Guid" Name="UserGuid" />
+    <Property Type="String" Name="UserAccountType" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FullName" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DOB" />
+    <Property Type="String" Name="Location" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PhoneNo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cCreated" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+</Schema>

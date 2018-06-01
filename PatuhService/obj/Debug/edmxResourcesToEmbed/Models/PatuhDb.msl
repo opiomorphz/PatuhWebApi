@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PatuhModelStoreContainer" CdmEntityContainer="PatuhEntities">
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="PatuhModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLog">
+          <ScalarProperty Name="ErrorLogID" ColumnName="ErrorLogID" />
+          <ScalarProperty Name="TsLog" ColumnName="TsLog" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsMenus">
+      <EntityTypeMapping TypeName="PatuhModel.MsMenu">
+        <MappingFragment StoreEntitySet="MsMenu">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Seq" ColumnName="Seq" />
+          <ScalarProperty Name="MenuText" ColumnName="MenuText" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsModules">
+      <EntityTypeMapping TypeName="PatuhModel.MsModule">
+        <MappingFragment StoreEntitySet="MsModule">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="ModuleDesc" ColumnName="ModuleDesc" />
+          <ScalarProperty Name="Info1" ColumnName="Info1" />
+          <ScalarProperty Name="Info2" ColumnName="Info2" />
+          <ScalarProperty Name="Info3" ColumnName="Info3" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsPages">
+      <EntityTypeMapping TypeName="PatuhModel.MsPage">
+        <MappingFragment StoreEntitySet="MsPage">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="PageDesc" ColumnName="PageDesc" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsSerials">
+      <EntityTypeMapping TypeName="PatuhModel.MsSerial">
+        <MappingFragment StoreEntitySet="MsSerial">
+          <ScalarProperty Name="SerialID" ColumnName="SerialID" />
+          <ScalarProperty Name="SerialDesc" ColumnName="SerialDesc" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="SerialLength" ColumnName="SerialLength" />
+          <ScalarProperty Name="StartNum" ColumnName="StartNum" />
+          <ScalarProperty Name="EndNum" ColumnName="EndNum" />
+          <ScalarProperty Name="CurrentNum" ColumnName="CurrentNum" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsUsers">
+      <EntityTypeMapping TypeName="PatuhModel.MsUser">
+        <MappingFragment StoreEntitySet="MsUser">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Info1" ColumnName="Info1" />
+          <ScalarProperty Name="Info2" ColumnName="Info2" />
+          <ScalarProperty Name="Info3" ColumnName="Info3" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsUserRoles">
+      <EntityTypeMapping TypeName="PatuhModel.MsUserRole">
+        <MappingFragment StoreEntitySet="MsUserRole">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="UserRoleDesc" ColumnName="UserRoleDesc" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsUserRoleAccesses">
+      <EntityTypeMapping TypeName="PatuhModel.MsUserRoleAccess">
+        <MappingFragment StoreEntitySet="MsUserRoleAccess">
+          <ScalarProperty Name="AccessID" ColumnName="AccessID" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserActivityLogs">
+      <EntityTypeMapping TypeName="PatuhModel.UserActivityLog">
+        <MappingFragment StoreEntitySet="UserActivityLog">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TsLog" ColumnName="TsLog" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="FormName" ColumnName="FormName" />
+          <ScalarProperty Name="DocumentNo" ColumnName="DocumentNo" />
+          <ScalarProperty Name="DocumentStatus" ColumnName="DocumentStatus" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DebuggerID" ColumnName="DebuggerID" />
+          <ScalarProperty Name="WindowsLogin" ColumnName="WindowsLogin" />
+          <ScalarProperty Name="AppType" ColumnName="AppType" />
+          <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+          <ScalarProperty Name="ApplicationMode" ColumnName="ApplicationMode" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="WebBrowser" ColumnName="WebBrowser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsMobileUserProfiles">
+      <EntityTypeMapping TypeName="PatuhModel.MsMobileUserProfile">
+        <MappingFragment StoreEntitySet="MsMobileUserProfile">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserAccountType" ColumnName="UserAccountType" />
+          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

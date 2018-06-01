@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatuhModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PatuhModelStoreContainer">
+    <EntitySet Name="ErrorLog" EntityType="PatuhModel.Store.ErrorLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsMenu" EntityType="PatuhModel.Store.MsMenu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsMobileUserProfile" EntityType="PatuhModel.Store.MsMobileUserProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsModule" EntityType="PatuhModel.Store.MsModule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsPage" EntityType="PatuhModel.Store.MsPage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsSerial" EntityType="PatuhModel.Store.MsSerial" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsUser" EntityType="PatuhModel.Store.MsUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsUserRole" EntityType="PatuhModel.Store.MsUserRole" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsUserRoleAccess" EntityType="PatuhModel.Store.MsUserRoleAccess" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserActivityLog" EntityType="PatuhModel.Store.UserActivityLog" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Module_Menu[OneToMany]" Association="PatuhModel.Store.FK_Module_Menu[OneToMany]">
+      <End Role="MsModule" EntitySet="MsModule" />
+      <End Role="MsMenu" EntitySet="MsMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_Page[OneToMany]" Association="PatuhModel.Store.FK_Module_Page[OneToMany]">
+      <End Role="MsModule" EntitySet="MsModule" />
+      <End Role="MsPage" EntitySet="MsPage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_User[OneToMany]" Association="PatuhModel.Store.FK_Module_User[OneToMany]">
+      <End Role="MsModule" EntitySet="MsModule" />
+      <End Role="MsUser" EntitySet="MsUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_UserRole[OneToMany]" Association="PatuhModel.Store.FK_Module_UserRole[OneToMany]">
+      <End Role="MsModule" EntitySet="MsModule" />
+      <End Role="MsUserRole" EntitySet="MsUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_UserRoleAccess[OneToMany]" Association="PatuhModel.Store.FK_Module_UserRoleAccess[OneToMany]">
+      <End Role="MsUserRole" EntitySet="MsUserRole" />
+      <End Role="MsUserRoleAccess" EntitySet="MsUserRoleAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Page_Menu[OneToMany]" Association="PatuhModel.Store.FK_Page_Menu[OneToMany]">
+      <End Role="MsPage" EntitySet="MsPage" />
+      <End Role="MsMenu" EntitySet="MsMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Page_UserRoleAccess[OneToMany]" Association="PatuhModel.Store.FK_Page_UserRoleAccess[OneToMany]">
+      <End Role="MsPage" EntitySet="MsPage" />
+      <End Role="MsUserRoleAccess" EntitySet="MsUserRoleAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User[OneToMany]" Association="PatuhModel.Store.FK_UserRole_User[OneToMany]">
+      <End Role="MsUserRole" EntitySet="MsUserRole" />
+      <End Role="MsUser" EntitySet="MsUser" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TsLog" Type="datetime" Nullable="false" />
+    <Property Name="PageName" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="ErrorMessage" Type="varchar" Nullable="false" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="MsMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="PageID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Seq" Type="int" Nullable="false" />
+    <Property Name="MenuText" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
+    <Property Name="TsMod" Type="datetime" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="MsMobileUserProfile">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Pwd" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserGuid" Type="uniqueidentifier" />
+    <Property Name="UserAccountType" Type="varchar" MaxLength="20" />
+    <Property Name="FullName" Type="varchar(max)" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Location" Type="varchar" MaxLength="20" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="cCreated" Type="varchar" MaxLength="10" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MsModule">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="ModuleDesc" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Info1" Type="varchar" MaxLength="100" />
+    <Property Name="Info2" Type="varchar" MaxLength="100" />
+    <Property Name="Info3" Type="varchar" MaxLength="100" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
+    <Property Name="TsMod" Type="datetime" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="MsPage">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="PageID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="PageName" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="PageDesc" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
+    <Property Name="TsMod" Type="datetime" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="MsSerial">
+    <Key>
+      <PropertyRef Name="SerialID" />
+    </Key>
+    <Property Name="SerialID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SerialDesc" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Remark" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="SerialLength" Type="int" Nullable="false" />
+    <Property Name="StartNum" Type="int" Nullable="false" />
+    <Property Name="EndNum" Type="int" Nullable="false" />
+    <Property Name="CurrentNum" Type="int" Nullable="false" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="TsMod" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="MsUser">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserRoleID" />
+      <PropertyRef Name="Area" />
+    </Key>
+    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="UserRoleID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Area" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="UserGuid" Type="uniqueidentifier" />
+    <Property Name="FullName" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Info1" Type="varchar" MaxLength="100" />
+    <Property Name="Info2" Type="varchar" MaxLength="100" />
+    <Property Name="Info3" Type="varchar" MaxLength="100" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
+    <Property Name="TsMod" Type="datetime" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="MsUserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="UserRoleID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="UserRoleDesc" Type="varchar" MaxLength="50" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
+    <Property Name="TsMod" Type="datetime" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="MsUserRoleAccess">
+    <Key>
+      <PropertyRef Name="AccessID" />
+    </Key>
+    <Property Name="AccessID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="PageID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="CrtUsrID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="TsCrt" Type="datetime" Nullable="false" />
+    <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
+    <Property Name="TsMod" Type="datetime" />
+    <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="UserActivityLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TsLog" Type="datetime" Nullable="false" />
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Action" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="FormName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DocumentNo" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DocumentStatus" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="ErrorMessage" Type="varchar" Nullable="false" MaxLength="2000" />
+    <Property Name="Remark" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="DebuggerID" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="WindowsLogin" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="AppType" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AppVersion" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="ApplicationMode" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="DeviceID" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="WebBrowser" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Module_Menu[OneToMany]">
+    <End Role="MsModule" Type="PatuhModel.Store.MsModule" Multiplicity="1" />
+    <End Role="MsMenu" Type="PatuhModel.Store.MsMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsMenu">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_Page[OneToMany]">
+    <End Role="MsModule" Type="PatuhModel.Store.MsModule" Multiplicity="1" />
+    <End Role="MsPage" Type="PatuhModel.Store.MsPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsPage">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_User[OneToMany]">
+    <End Role="MsModule" Type="PatuhModel.Store.MsModule" Multiplicity="1" />
+    <End Role="MsUser" Type="PatuhModel.Store.MsUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsUser">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_UserRole[OneToMany]">
+    <End Role="MsModule" Type="PatuhModel.Store.MsModule" Multiplicity="1" />
+    <End Role="MsUserRole" Type="PatuhModel.Store.MsUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsModule">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="MsUserRole">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_UserRoleAccess[OneToMany]">
+    <End Role="MsUserRole" Type="PatuhModel.Store.MsUserRole" Multiplicity="1" />
+    <End Role="MsUserRoleAccess" Type="PatuhModel.Store.MsUserRoleAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsUserRole">
+        <PropertyRef Name="UserRoleID" />
+      </Principal>
+      <Dependent Role="MsUserRoleAccess">
+        <PropertyRef Name="UserRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Page_Menu[OneToMany]">
+    <End Role="MsPage" Type="PatuhModel.Store.MsPage" Multiplicity="1" />
+    <End Role="MsMenu" Type="PatuhModel.Store.MsMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsPage">
+        <PropertyRef Name="PageID" />
+      </Principal>
+      <Dependent Role="MsMenu">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Page_UserRoleAccess[OneToMany]">
+    <End Role="MsPage" Type="PatuhModel.Store.MsPage" Multiplicity="1" />
+    <End Role="MsUserRoleAccess" Type="PatuhModel.Store.MsUserRoleAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsPage">
+        <PropertyRef Name="PageID" />
+      </Principal>
+      <Dependent Role="MsUserRoleAccess">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User[OneToMany]">
+    <End Role="MsUserRole" Type="PatuhModel.Store.MsUserRole" Multiplicity="1" />
+    <End Role="MsUser" Type="PatuhModel.Store.MsUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsUserRole">
+        <PropertyRef Name="UserRoleID" />
+      </Principal>
+      <Dependent Role="MsUser">
+        <PropertyRef Name="UserRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
