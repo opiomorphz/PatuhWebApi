@@ -25,9 +25,15 @@ namespace PatuhService.Controllers
        
 
         // GET api/values/5
-        public string Get(int id)
+        public object Get(string UserID)
         {
-            return "value";
+            using (PatuhEntities db = new PatuhEntities())
+            {
+                MsMobileUserProfile profile = db.MsMobileUserProfiles.Where(x => x.UserID == UserID).First();
+
+                return profile;
+            }
+
         }
 
         // POST api/values
@@ -51,11 +57,62 @@ namespace PatuhService.Controllers
             try
             {
                 using (PatuhEntities db = new PatuhEntities())
-                {                    
+                {
+                    MsMobileUserProfile profile = db.MsMobileUserProfiles.Where(x => x.UserID == userId).First();
+
                     Guid userGuid = System.Guid.NewGuid();
                     string hashedPassword = Security.HashSHA1(password + userGuid.ToString());
 
-                    MsMobileUserProfile profile = new MsMobileUserProfile();
+                    string profilePicPath = "";
+                    try
+                    {
+                        if (httpRequest.Files.Count > 0)
+                        {
+                            string extention = "";
+                            string guid = "";
+                            string[] supportedTypes = new string[] { "jpg", "jpeg", "bmp", "png" };
+
+                            foreach (string file in httpRequest.Files)
+                            {
+                                var postedFile = httpRequest.Files[file];
+                                Type fileType = postedFile.GetType();
+                                if (postedFile != null)
+                                {
+                                    if (postedFile.FileName != "")
+                                    {
+                                        extention = (Path.GetExtension(postedFile.FileName).TrimStart('.')).ToLower();
+
+                                        if (supportedTypes.Contains(extention))
+                                        {
+                                            string filePath = Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(postedFile.FileName));
+                                            postedFile.SaveAs(filePath);
+                                            guid = DateTime.Now.ToString("yyyyMMddhhmmss") + System.Guid.NewGuid().ToString("n") + Path.GetExtension(postedFile.FileName);
+
+                                            FileInfo TheFile = new FileInfo(filePath);
+                                            if (TheFile.Exists)
+                                            {
+                                                TheFile.MoveTo(Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(guid)));
+
+                                            }
+
+                                            profilePicPath = TheFile.FullName;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                    if (profile == null)
+                    {
+                        profile = new MsMobileUserProfile();                        
+                        db.MsMobileUserProfiles.AddObject(profile);
+                    }
+
                     profile.UserID = userId;
                     profile.FullName = userName;
                     profile.Email = email;
@@ -64,52 +121,9 @@ namespace PatuhService.Controllers
                     profile.DOB = DateTime.Now;//DateTime.Parse(birthday);
                     profile.Pwd = hashedPassword;
                     profile.UserGuid = userGuid;
-
-                    db.MsMobileUserProfiles.AddObject(profile);
+                    profile.ProfilePicPath = profilePicPath;
+                                        
                     db.SaveChanges();
-
-                }
-
-                try
-                {
-                    if (httpRequest.Files.Count > 0)
-                    {
-                        string extention = "";
-                        string guid = "";
-                        string[] supportedTypes = new string[] { "jpg", "jpeg", "bmp", "png" };
-
-                        foreach (string file in httpRequest.Files)
-                        {
-                            var postedFile = httpRequest.Files[file];
-                            Type fileType = postedFile.GetType();
-                            if (postedFile != null)
-                            {
-                                if (postedFile.FileName != "")
-                                {
-                                    extention = (Path.GetExtension(postedFile.FileName).TrimStart('.')).ToLower();
-
-                                    if (supportedTypes.Contains(extention))
-                                    {
-                                        string filePath = Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(postedFile.FileName));
-                                        postedFile.SaveAs(filePath);
-                                        guid = DateTime.Now.ToString("yyyyMMddhhmmss") + System.Guid.NewGuid().ToString("n") + Path.GetExtension(postedFile.FileName);
-
-                                        FileInfo TheFile = new FileInfo(filePath);
-                                        if (TheFile.Exists)
-                                        {
-                                            TheFile.MoveTo(Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(guid)));
-
-                                        }
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-
                 }
             }
             catch (Exception e)

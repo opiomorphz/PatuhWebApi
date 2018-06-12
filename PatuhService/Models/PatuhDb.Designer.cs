@@ -1249,6 +1249,30 @@ namespace PatuhService.Models
         private Nullable<global::System.DateTime> _dLastUpdated;
         partial void OndLastUpdatedChanging(Nullable<global::System.DateTime> value);
         partial void OndLastUpdatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProfilePicPath
+        {
+            get
+            {
+                return _ProfilePicPath;
+            }
+            set
+            {
+                OnProfilePicPathChanging(value);
+                ReportPropertyChanging("ProfilePicPath");
+                _ProfilePicPath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProfilePicPath");
+                OnProfilePicPathChanged();
+            }
+        }
+        private global::System.String _ProfilePicPath;
+        partial void OnProfilePicPathChanging(global::System.String value);
+        partial void OnProfilePicPathChanged();
 
         #endregion
 

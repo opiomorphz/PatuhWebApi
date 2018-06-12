@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PatuhService.Models;
 
 namespace PatuhService.ViewModels
 {
@@ -10,5 +11,6 @@ namespace PatuhService.ViewModels
         public string userId { get; set; }
         public string userName { get; set; }
         public string userAccountType { get; set; }
+        public MsMobileUserProfile userProfile { get; set; }
     }
 }

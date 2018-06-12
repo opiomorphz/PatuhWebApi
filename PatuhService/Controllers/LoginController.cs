@@ -75,6 +75,7 @@ namespace PatuhService.Controllers
                             loginStatus.userId = matchUser.UserID;
                             loginStatus.userName = matchUser.FullName;
                             loginStatus.userAccountType = matchUser.UserAccountType;
+                            loginStatus.userProfile = matchUser;
                         }
 
                     }
