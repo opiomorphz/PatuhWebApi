@@ -9,6 +9,7 @@ using System.IO;
 using PatuhService.ViewModels;
 using PatuhService.Models;
 using PatuhService.Utils;
+using System.Net.Http.Headers;
 
 namespace PatuhService.Controllers
 {
@@ -36,6 +37,35 @@ namespace PatuhService.Controllers
 
         }
 
+        public HttpResponseMessage GetProfilePic(string UserID, string userAccountType)
+        {
+            using (PatuhEntities db = new PatuhEntities())
+            {
+                MsMobileUserProfile profile = db.MsMobileUserProfiles.Where(x => x.UserID == UserID).FirstOrDefault();
+
+                try
+                {
+
+                    FileStream fileStream = File.OpenRead(profile.ProfilePicPath);
+                    long fileLength = new FileInfo(profile.ProfilePicPath).Length;
+
+                    var response = new HttpResponseMessage();
+                    response.Content = new StreamContent(fileStream);
+                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+                    response.Content.Headers.ContentDisposition.FileName = "image";
+                    response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                    response.Content.Headers.ContentLength = fileLength;
+                    return response;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+
+        }
+
         // POST api/values
         public object Post()
         {
@@ -58,7 +88,9 @@ namespace PatuhService.Controllers
             {
                 using (PatuhEntities db = new PatuhEntities())
                 {
-                    MsMobileUserProfile profile = db.MsMobileUserProfiles.Where(x => x.UserID == userId).First();
+                    MsMobileUserProfile profile = db.MsMobileUserProfiles.Where(x => x.UserID == userId).FirstOrDefault();
+
+                          
 
                     Guid userGuid = System.Guid.NewGuid();
                     string hashedPassword = Security.HashSHA1(password + userGuid.ToString());
@@ -132,7 +164,6 @@ namespace PatuhService.Controllers
                 result.message = e.Message;
                 result.messageCode = "Error in saving User Profile";
             }
-
 
             return result;
 

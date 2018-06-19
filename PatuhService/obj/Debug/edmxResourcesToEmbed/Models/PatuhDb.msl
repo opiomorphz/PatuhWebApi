@@ -79,48 +79,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MsUsers">
-      <EntityTypeMapping TypeName="PatuhModel.MsUser">
-        <MappingFragment StoreEntitySet="MsUser">
-          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
-          <ScalarProperty Name="Area" ColumnName="Area" />
-          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
-          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Info1" ColumnName="Info1" />
-          <ScalarProperty Name="Info2" ColumnName="Info2" />
-          <ScalarProperty Name="Info3" ColumnName="Info3" />
-          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
-          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
-          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
-          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
-          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="MsUserRoles">
       <EntityTypeMapping TypeName="PatuhModel.MsUserRole">
         <MappingFragment StoreEntitySet="MsUserRole">
           <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
           <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
           <ScalarProperty Name="UserRoleDesc" ColumnName="UserRoleDesc" />
-          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
-          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
-          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
-          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
-          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MsUserRoleAccesses">
-      <EntityTypeMapping TypeName="PatuhModel.MsUserRoleAccess">
-        <MappingFragment StoreEntitySet="MsUserRoleAccess">
-          <ScalarProperty Name="AccessID" ColumnName="AccessID" />
-          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
-          <ScalarProperty Name="PageID" ColumnName="PageID" />
           <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
           <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
           <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
@@ -156,6 +120,7 @@
     <EntitySetMapping Name="MsMobileUserProfiles">
       <EntityTypeMapping TypeName="PatuhModel.MsMobileUserProfile">
         <MappingFragment StoreEntitySet="MsMobileUserProfile">
+          <ScalarProperty Name="ProfilePicPath" ColumnName="ProfilePicPath" />
           <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
           <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
           <ScalarProperty Name="dCreated" ColumnName="dCreated" />
@@ -169,6 +134,40 @@
           <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
           <ScalarProperty Name="Pwd" ColumnName="Pwd" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsUsers">
+      <EntityTypeMapping TypeName="PatuhModel.MsUser">
+        <MappingFragment StoreEntitySet="MsUser">
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="Info3" ColumnName="Info3" />
+          <ScalarProperty Name="Info2" ColumnName="Info2" />
+          <ScalarProperty Name="Info1" ColumnName="Info1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsUserRoleAccesses">
+      <EntityTypeMapping TypeName="PatuhModel.MsUserRoleAccess">
+        <MappingFragment StoreEntitySet="MsUserRoleAccess">
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+          <ScalarProperty Name="TsMod" ColumnName="TsMod" />
+          <ScalarProperty Name="ModUsrID" ColumnName="ModUsrID" />
+          <ScalarProperty Name="TsCrt" ColumnName="TsCrt" />
+          <ScalarProperty Name="CrtUsrID" ColumnName="CrtUsrID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="AccessID" ColumnName="AccessID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -22,7 +22,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("PatuhModel", "FK_Module_Menu_OneToMany_", "MsModule", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsModule), "MsMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsMenu), true)]
 [assembly: EdmRelationshipAttribute("PatuhModel", "FK_Page_Menu_OneToMany_", "MsPage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsPage), "MsMenu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsMenu), true)]
 [assembly: EdmRelationshipAttribute("PatuhModel", "FK_Module_Page_OneToMany_", "MsModule", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsModule), "MsPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsPage), true)]
-[assembly: EdmRelationshipAttribute("PatuhModel", "FK_Module_User_OneToMany_", "MsModule", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsModule), "MsUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsUser), true)]
 [assembly: EdmRelationshipAttribute("PatuhModel", "FK_Module_UserRole_OneToMany_", "MsModule", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsModule), "MsUserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsUserRole), true)]
 [assembly: EdmRelationshipAttribute("PatuhModel", "FK_Page_UserRoleAccess_OneToMany_", "MsPage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsPage), "MsUserRoleAccess", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsUserRoleAccess), true)]
 [assembly: EdmRelationshipAttribute("PatuhModel", "FK_UserRole_User_OneToMany_", "MsUserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PatuhService.Models.MsUserRole), "MsUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PatuhService.Models.MsUser), true)]
@@ -161,22 +160,6 @@ namespace PatuhService.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<MsUser> MsUsers
-        {
-            get
-            {
-                if ((_MsUsers == null))
-                {
-                    _MsUsers = base.CreateObjectSet<MsUser>("MsUsers");
-                }
-                return _MsUsers;
-            }
-        }
-        private ObjectSet<MsUser> _MsUsers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<MsUserRole> MsUserRoles
         {
             get
@@ -189,22 +172,6 @@ namespace PatuhService.Models
             }
         }
         private ObjectSet<MsUserRole> _MsUserRoles;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<MsUserRoleAccess> MsUserRoleAccesses
-        {
-            get
-            {
-                if ((_MsUserRoleAccesses == null))
-                {
-                    _MsUserRoleAccesses = base.CreateObjectSet<MsUserRoleAccess>("MsUserRoleAccesses");
-                }
-                return _MsUserRoleAccesses;
-            }
-        }
-        private ObjectSet<MsUserRoleAccess> _MsUserRoleAccesses;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -237,6 +204,38 @@ namespace PatuhService.Models
             }
         }
         private ObjectSet<MsMobileUserProfile> _MsMobileUserProfiles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MsUser> MsUsers
+        {
+            get
+            {
+                if ((_MsUsers == null))
+                {
+                    _MsUsers = base.CreateObjectSet<MsUser>("MsUsers");
+                }
+                return _MsUsers;
+            }
+        }
+        private ObjectSet<MsUser> _MsUsers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MsUserRoleAccess> MsUserRoleAccesses
+        {
+            get
+            {
+                if ((_MsUserRoleAccesses == null))
+                {
+                    _MsUserRoleAccesses = base.CreateObjectSet<MsUserRoleAccess>("MsUserRoleAccesses");
+                }
+                return _MsUserRoleAccesses;
+            }
+        }
+        private ObjectSet<MsUserRoleAccess> _MsUserRoleAccesses;
 
         #endregion
 
@@ -283,27 +282,11 @@ namespace PatuhService.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the MsUsers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMsUsers(MsUser msUser)
-        {
-            base.AddObject("MsUsers", msUser);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the MsUserRoles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToMsUserRoles(MsUserRole msUserRole)
         {
             base.AddObject("MsUserRoles", msUserRole);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the MsUserRoleAccesses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMsUserRoleAccesses(MsUserRoleAccess msUserRoleAccess)
-        {
-            base.AddObject("MsUserRoleAccesses", msUserRoleAccess);
         }
     
         /// <summary>
@@ -320,6 +303,22 @@ namespace PatuhService.Models
         public void AddToMsMobileUserProfiles(MsMobileUserProfile msMobileUserProfile)
         {
             base.AddObject("MsMobileUserProfiles", msMobileUserProfile);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MsUsers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMsUsers(MsUser msUser)
+        {
+            base.AddObject("MsUsers", msUser);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MsUserRoleAccesses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMsUserRoleAccesses(MsUserRoleAccess msUserRoleAccess)
+        {
+            base.AddObject("MsUserRoleAccesses", msUserRoleAccess);
         }
 
         #endregion
@@ -1610,28 +1609,6 @@ namespace PatuhService.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PatuhModel", "FK_Module_User_OneToMany_", "MsUser")]
-        public EntityCollection<MsUser> MsUsers
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MsUser>("PatuhModel.FK_Module_User_OneToMany_", "MsUser");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MsUser>("PatuhModel.FK_Module_User_OneToMany_", "MsUser", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("PatuhModel", "FK_Module_UserRole_OneToMany_", "MsUserRole")]
         public EntityCollection<MsUserRole> MsUserRoles
         {
@@ -2355,20 +2332,16 @@ namespace PatuhService.Models
         /// <summary>
         /// Create a new MsUser object.
         /// </summary>
-        /// <param name="moduleID">Initial value of the ModuleID property.</param>
         /// <param name="userID">Initial value of the UserID property.</param>
         /// <param name="userRoleID">Initial value of the UserRoleID property.</param>
-        /// <param name="area">Initial value of the Area property.</param>
         /// <param name="crtUsrID">Initial value of the CrtUsrID property.</param>
         /// <param name="tsCrt">Initial value of the TsCrt property.</param>
         /// <param name="activeFlag">Initial value of the ActiveFlag property.</param>
-        public static MsUser CreateMsUser(global::System.String moduleID, global::System.String userID, global::System.String userRoleID, global::System.String area, global::System.String crtUsrID, global::System.DateTime tsCrt, global::System.String activeFlag)
+        public static MsUser CreateMsUser(global::System.String userID, global::System.String userRoleID, global::System.String crtUsrID, global::System.DateTime tsCrt, global::System.String activeFlag)
         {
             MsUser msUser = new MsUser();
-            msUser.ModuleID = moduleID;
             msUser.UserID = userID;
             msUser.UserRoleID = userRoleID;
-            msUser.Area = area;
             msUser.CrtUsrID = crtUsrID;
             msUser.TsCrt = tsCrt;
             msUser.ActiveFlag = activeFlag;
@@ -2378,33 +2351,6 @@ namespace PatuhService.Models
         #endregion
 
         #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String ModuleID
-        {
-            get
-            {
-                return _ModuleID;
-            }
-            set
-            {
-                if (_ModuleID != value)
-                {
-                    OnModuleIDChanging(value);
-                    ReportPropertyChanging("ModuleID");
-                    _ModuleID = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("ModuleID");
-                    OnModuleIDChanged();
-                }
-            }
-        }
-        private global::System.String _ModuleID;
-        partial void OnModuleIDChanging(global::System.String value);
-        partial void OnModuleIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2459,33 +2405,6 @@ namespace PatuhService.Models
         private global::System.String _UserRoleID;
         partial void OnUserRoleIDChanging(global::System.String value);
         partial void OnUserRoleIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Area
-        {
-            get
-            {
-                return _Area;
-            }
-            set
-            {
-                if (_Area != value)
-                {
-                    OnAreaChanging(value);
-                    ReportPropertyChanging("Area");
-                    _Area = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("Area");
-                    OnAreaChanged();
-                }
-            }
-        }
-        private global::System.String _Area;
-        partial void OnAreaChanging(global::System.String value);
-        partial void OnAreaChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2658,7 +2577,7 @@ namespace PatuhService.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CrtUsrID
         {
@@ -2668,11 +2587,14 @@ namespace PatuhService.Models
             }
             set
             {
-                OnCrtUsrIDChanging(value);
-                ReportPropertyChanging("CrtUsrID");
-                _CrtUsrID = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CrtUsrID");
-                OnCrtUsrIDChanged();
+                if (_CrtUsrID != value)
+                {
+                    OnCrtUsrIDChanging(value);
+                    ReportPropertyChanging("CrtUsrID");
+                    _CrtUsrID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CrtUsrID");
+                    OnCrtUsrIDChanged();
+                }
             }
         }
         private global::System.String _CrtUsrID;
@@ -2682,7 +2604,7 @@ namespace PatuhService.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime TsCrt
         {
@@ -2692,11 +2614,14 @@ namespace PatuhService.Models
             }
             set
             {
-                OnTsCrtChanging(value);
-                ReportPropertyChanging("TsCrt");
-                _TsCrt = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TsCrt");
-                OnTsCrtChanged();
+                if (_TsCrt != value)
+                {
+                    OnTsCrtChanging(value);
+                    ReportPropertyChanging("TsCrt");
+                    _TsCrt = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TsCrt");
+                    OnTsCrtChanged();
+                }
             }
         }
         private global::System.DateTime _TsCrt;
@@ -2754,7 +2679,7 @@ namespace PatuhService.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ActiveFlag
         {
@@ -2764,11 +2689,14 @@ namespace PatuhService.Models
             }
             set
             {
-                OnActiveFlagChanging(value);
-                ReportPropertyChanging("ActiveFlag");
-                _ActiveFlag = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("ActiveFlag");
-                OnActiveFlagChanged();
+                if (_ActiveFlag != value)
+                {
+                    OnActiveFlagChanging(value);
+                    ReportPropertyChanging("ActiveFlag");
+                    _ActiveFlag = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ActiveFlag");
+                    OnActiveFlagChanged();
+                }
             }
         }
         private global::System.String _ActiveFlag;
@@ -2779,44 +2707,6 @@ namespace PatuhService.Models
 
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PatuhModel", "FK_Module_User_OneToMany_", "MsModule")]
-        public MsModule MsModule
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MsModule>("PatuhModel.FK_Module_User_OneToMany_", "MsModule").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MsModule>("PatuhModel.FK_Module_User_OneToMany_", "MsModule").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MsModule> MsModuleReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MsModule>("PatuhModel.FK_Module_User_OneToMany_", "MsModule");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MsModule>("PatuhModel.FK_Module_User_OneToMany_", "MsModule", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.

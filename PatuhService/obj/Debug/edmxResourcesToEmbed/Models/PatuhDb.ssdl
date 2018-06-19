@@ -7,7 +7,24 @@
     <EntitySet Name="MsModule" EntityType="PatuhModel.Store.MsModule" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsPage" EntityType="PatuhModel.Store.MsPage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsSerial" EntityType="PatuhModel.Store.MsSerial" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="MsUser" EntityType="PatuhModel.Store.MsUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsUser" EntityType="PatuhModel.Store.MsUser" store:Type="Tables" store:Schema="dbo" store:Name="MsUser">
+      <DefiningQuery>SELECT 
+      [MsUser].[UserID] AS [UserID], 
+      [MsUser].[UserRoleID] AS [UserRoleID], 
+      [MsUser].[Pwd] AS [Pwd], 
+      [MsUser].[UserGuid] AS [UserGuid], 
+      [MsUser].[FullName] AS [FullName], 
+      [MsUser].[Email] AS [Email], 
+      [MsUser].[Info1] AS [Info1], 
+      [MsUser].[Info2] AS [Info2], 
+      [MsUser].[Info3] AS [Info3], 
+      [MsUser].[CrtUsrID] AS [CrtUsrID], 
+      [MsUser].[TsCrt] AS [TsCrt], 
+      [MsUser].[ModUsrID] AS [ModUsrID], 
+      [MsUser].[TsMod] AS [TsMod], 
+      [MsUser].[ActiveFlag] AS [ActiveFlag]
+      FROM [dbo].[MsUser] AS [MsUser]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="MsUserRole" EntityType="PatuhModel.Store.MsUserRole" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsUserRoleAccess" EntityType="PatuhModel.Store.MsUserRoleAccess" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserActivityLog" EntityType="PatuhModel.Store.UserActivityLog" store:Type="Tables" Schema="dbo" />
@@ -18,10 +35,6 @@
     <AssociationSet Name="FK_Module_Page[OneToMany]" Association="PatuhModel.Store.FK_Module_Page[OneToMany]">
       <End Role="MsModule" EntitySet="MsModule" />
       <End Role="MsPage" EntitySet="MsPage" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Module_User[OneToMany]" Association="PatuhModel.Store.FK_Module_User[OneToMany]">
-      <End Role="MsModule" EntitySet="MsModule" />
-      <End Role="MsUser" EntitySet="MsUser" />
     </AssociationSet>
     <AssociationSet Name="FK_Module_UserRole[OneToMany]" Association="PatuhModel.Store.FK_Module_UserRole[OneToMany]">
       <End Role="MsModule" EntitySet="MsModule" />
@@ -84,6 +97,7 @@
     <Property Name="Location" Type="varchar" MaxLength="20" />
     <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="ProfilePicPath" Type="varchar" MaxLength="255" />
     <Property Name="cCreated" Type="varchar" MaxLength="10" />
     <Property Name="dCreated" Type="datetime" />
     <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
@@ -135,17 +149,19 @@
     <Property Name="ModUsrID" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
   </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.MsUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
   <EntityType Name="MsUser">
     <Key>
-      <PropertyRef Name="ModuleID" />
       <PropertyRef Name="UserID" />
       <PropertyRef Name="UserRoleID" />
-      <PropertyRef Name="Area" />
+      <PropertyRef Name="CrtUsrID" />
+      <PropertyRef Name="TsCrt" />
+      <PropertyRef Name="ActiveFlag" />
     </Key>
-    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="5" />
     <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="UserRoleID" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="Area" Type="varchar" Nullable="false" MaxLength="4" />
     <Property Name="Pwd" Type="varchar" MaxLength="50" />
     <Property Name="UserGuid" Type="uniqueidentifier" />
     <Property Name="FullName" Type="varchar" MaxLength="100" />
@@ -228,18 +244,6 @@
         <PropertyRef Name="ModuleID" />
       </Principal>
       <Dependent Role="MsPage">
-        <PropertyRef Name="ModuleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Module_User[OneToMany]">
-    <End Role="MsModule" Type="PatuhModel.Store.MsModule" Multiplicity="1" />
-    <End Role="MsUser" Type="PatuhModel.Store.MsUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MsModule">
-        <PropertyRef Name="ModuleID" />
-      </Principal>
-      <Dependent Role="MsUser">
         <PropertyRef Name="ModuleID" />
       </Dependent>
     </ReferentialConstraint>

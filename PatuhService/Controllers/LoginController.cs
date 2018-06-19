@@ -53,6 +53,9 @@ namespace PatuhService.Controllers
         {
             //string hashedPassword = Security.HashSHA1(loginCredential.password + userGuid.ToString());
             LoginStatusViewModel loginStatus = new LoginStatusViewModel();
+            loginStatus.userId = "";
+            loginStatus.userName = "";
+            loginStatus.userAccountType = "";
             
             
             MsMobileUserProfile matchUser;
@@ -72,9 +75,9 @@ namespace PatuhService.Controllers
                         if (matchUser.Pwd == hashedPassword)
                         {
                             // The password is correct
-                            loginStatus.userId = matchUser.UserID;
-                            loginStatus.userName = matchUser.FullName;
-                            loginStatus.userAccountType = matchUser.UserAccountType;
+                            loginStatus.userId = matchUser.UserID ?? "";
+                            loginStatus.userName = matchUser.FullName ?? "";
+                            loginStatus.userAccountType = matchUser.UserAccountType ?? "";
                             loginStatus.userProfile = matchUser;
                         }
 
