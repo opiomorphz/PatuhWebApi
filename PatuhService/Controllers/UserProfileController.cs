@@ -26,7 +26,7 @@ namespace PatuhService.Controllers
        
 
         // GET api/values/5
-        public object Get(string UserID)
+        public object Get(string UserID, string password)
         {
             using (PatuhEntities db = new PatuhEntities())
             {
@@ -37,7 +37,7 @@ namespace PatuhService.Controllers
 
         }
 
-        public HttpResponseMessage GetProfilePic(string UserID, string userAccountType)
+        public HttpResponseMessage GetProfilePic(string UserID)
         {
             using (PatuhEntities db = new PatuhEntities())
             {
@@ -51,9 +51,9 @@ namespace PatuhService.Controllers
 
                     var response = new HttpResponseMessage();
                     response.Content = new StreamContent(fileStream);
-                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("inline");
                     response.Content.Headers.ContentDisposition.FileName = "image";
-                    response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                    response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
                     response.Content.Headers.ContentLength = fileLength;
                     return response;
                 }
@@ -154,6 +154,8 @@ namespace PatuhService.Controllers
                     profile.Pwd = hashedPassword;
                     profile.UserGuid = userGuid;
                     profile.ProfilePicPath = profilePicPath;
+                    profile.dCreated = DateTime.Now;
+                    profile.dLastUpdated = DateTime.Now;
                                         
                     db.SaveChanges();
                 }
