@@ -34,3 +34,41 @@ D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Deployment.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Razor.xml
 D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.dll
 D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.pdb
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\PatuhService.dll.config
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\PatuhService.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\PatuhService.pdb
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\Antlr3.Runtime.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\EntityFramework.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\Microsoft.Web.Infrastructure.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\Newtonsoft.Json.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Net.Http.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Net.Http.Formatting.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Net.Http.WebRequest.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Helpers.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Http.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Http.WebHost.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Mvc.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Optimization.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Providers.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Razor.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.WebPages.Deployment.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.WebPages.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.WebPages.Razor.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\WebGrease.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\EntityFramework.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\Newtonsoft.Json.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Net.Http.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Net.Http.Formatting.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Net.Http.WebRequest.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Helpers.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Http.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Http.WebHost.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Mvc.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.Razor.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.WebPages.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.WebPages.Deployment.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\bin\System.Web.WebPages.Razor.xml
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\obj\Debug\PatuhService.csprojResolveAssemblyReference.cache
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\obj\Debug\PatuhService.csproj.CoreCompileInputs.cache
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\obj\Debug\PatuhService.dll
+H:\SAUFI\DATA\PATUH\PatuhWebApi\PatuhService\obj\Debug\PatuhService.pdb
