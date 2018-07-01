@@ -120,6 +120,7 @@
     <EntitySetMapping Name="MsMobileUserProfiles">
       <EntityTypeMapping TypeName="PatuhModel.MsMobileUserProfile">
         <MappingFragment StoreEntitySet="MsMobileUserProfile">
+          <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
           <ScalarProperty Name="ProfilePicPath" ColumnName="ProfilePicPath" />
           <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
           <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />

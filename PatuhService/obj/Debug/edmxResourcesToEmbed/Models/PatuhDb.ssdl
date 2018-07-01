@@ -98,6 +98,7 @@
     <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
     <Property Name="ProfilePicPath" Type="varchar" MaxLength="255" />
+    <Property Name="ProfilePic" Type="varbinary(max)" />
     <Property Name="cCreated" Type="varchar" MaxLength="10" />
     <Property Name="dCreated" Type="datetime" />
     <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />

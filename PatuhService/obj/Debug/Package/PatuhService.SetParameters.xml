@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=aal711cbuz184q.cudpqetsnx5t.ap-southeast-1.rds.amazonaws.com;Initial Catalog=Patuh;User ID=patuhdb;Password=adminpatuh;" />
+  <setParameter name="PatuhEntities-Web.config Connection String" value="metadata=res://*/Models.PatuhDb.csdl|res://*/Models.PatuhDb.ssdl|res://*/Models.PatuhDb.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=aal711cbuz184q.cudpqetsnx5t.ap-southeast-1.rds.amazonaws.com;initial catalog=Patuh;user id=patuhdb;password=adminpatuh;multipleactiveresultsets=True;App=EntityFramework&quot;" />
+</parameters>

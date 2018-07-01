@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -138,6 +139,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Security.cs" />
+    <Compile Include="ViewModels\MsMobileUserProfileViewModel.cs" />
     <Compile Include="ViewModels\LoginCredentialViewModel.cs" />
     <Compile Include="ViewModels\JsonResultViewModel.cs" />
     <Compile Include="ViewModels\LoginStatusViewModel.cs" />
@@ -200,6 +202,16 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="PhotoUploads\201806200827170fc8d6907ccc42b99c064e6b2f86b65f.jpg" />
+    <Content Include="PhotoUploads\20180620084523ea89468fa5014484b8f9e37cee50d01a.jpg" />
+    <Content Include="PhotoUploads\20180620094840818980c7793f4c4094ef414a647a486a.jpg" />
+    <Content Include="PhotoUploads\20180620095549c97c60516bff4a72ae1470e5559b9419.jpg" />
+    <Content Include="PhotoUploads\20180620095711bd1a105d5a7543789bf37a6752871240.jpg" />
+    <Content Include="PhotoUploads\201806201003505baeef296ccf452d97b85986d8afca21.jpg" />
+    <Content Include="PhotoUploads\20180620100817e06672373e9e4773a518f3b3baefe70a.jpg" />
+    <Content Include="PhotoUploads\20180620101619a7fc2e2b9a984aa9bc17e6bc23145e84.jpg" />
+    <Content Include="PhotoUploads\20180620101632e25147ea4f51421c8e8be977779ecb98.jpg" />
+    <Content Include="PhotoUploads\20180623012838ab772ecd092746f3b3c84242dc71afd2.png" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -215,7 +227,9 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

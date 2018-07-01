@@ -11,7 +11,7 @@ namespace PatuhService.ViewModels
         public string userId { get; set; }
         public string userName { get; set; }
         public string userAccountType { get; set; }
-        public MsMobileUserProfile userProfile { get; set; }
+        public MsMobileUserProfileViewModel userProfile { get; set; }
         public double points { get; set; }
     }
 }

@@ -78,7 +78,20 @@ namespace PatuhService.Controllers
                             loginStatus.userId = matchUser.UserID ?? "";
                             loginStatus.userName = matchUser.FullName ?? "";
                             loginStatus.userAccountType = matchUser.UserAccountType ?? "";
-                            loginStatus.userProfile = matchUser;
+
+                            MsMobileUserProfileViewModel msMobileUserProfileViewModel = new MsMobileUserProfileViewModel();
+                            msMobileUserProfileViewModel.UserID = matchUser.UserID;
+                            msMobileUserProfileViewModel.Pwd = matchUser.Pwd;
+                            msMobileUserProfileViewModel.UserGuid = matchUser.UserGuid;
+                            msMobileUserProfileViewModel.UserAccountType = matchUser.UserAccountType;
+                            msMobileUserProfileViewModel.FullName = matchUser.FullName;
+                            msMobileUserProfileViewModel.DOB = (matchUser.DOB != null ? matchUser.DOB.Value.ToString("dd-MM-yyyy") : "");
+                            msMobileUserProfileViewModel.Location = matchUser.Location;
+                            msMobileUserProfileViewModel.PhoneNo = matchUser.PhoneNo;
+                            msMobileUserProfileViewModel.Email = matchUser.Email;
+
+
+                            loginStatus.userProfile = msMobileUserProfileViewModel;
                         }
 
                     }

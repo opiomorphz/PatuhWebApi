@@ -1,4 +1,3 @@
-D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.csprojResolveAssemblyReference.cache
 D:\SIDE JOB\PatuhService\PatuhService\bin\PatuhService.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\PatuhService.pdb
 D:\SIDE JOB\PatuhService\PatuhService\bin\Antlr3.Runtime.dll
@@ -34,3 +33,4 @@ D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Deployment.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Razor.xml
 D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.dll
 D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.pdb
+D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.csprojResolveAssemblyReference.cache

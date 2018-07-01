@@ -226,6 +226,7 @@
     <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="dLastUpdated" />
     <Property Type="String" Name="ProfilePicPath" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="ProfilePic" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="MsUser">
     <Key>

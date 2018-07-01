@@ -1272,6 +1272,30 @@ namespace PatuhService.Models
         private global::System.String _ProfilePicPath;
         partial void OnProfilePicPathChanging(global::System.String value);
         partial void OnProfilePicPathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] ProfilePic
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_ProfilePic);
+            }
+            set
+            {
+                OnProfilePicChanging(value);
+                ReportPropertyChanging("ProfilePic");
+                _ProfilePic = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProfilePic");
+                OnProfilePicChanged();
+            }
+        }
+        private global::System.Byte[] _ProfilePic;
+        partial void OnProfilePicChanging(global::System.Byte[] value);
+        partial void OnProfilePicChanged();
 
         #endregion
 

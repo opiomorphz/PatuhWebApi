@@ -45,16 +45,18 @@ namespace PatuhService.Controllers
 
                 try
                 {
-
-                    FileStream fileStream = File.OpenRead(profile.ProfilePicPath);
-                    long fileLength = new FileInfo(profile.ProfilePicPath).Length;
+                    Stream stream = new MemoryStream(profile.ProfilePic);   
+                    //FileStream fileStream = File.OpenRead(profile.ProfilePicPath);
+                    //long fileLength = new FileInfo(profile.ProfilePicPath).Length;
 
                     var response = new HttpResponseMessage();
-                    response.Content = new StreamContent(fileStream);
+                    //response.Content = new StreamContent(fileStream);
+                    response.Content = new ByteArrayContent(profile.ProfilePic);
+
                     response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("inline");
                     response.Content.Headers.ContentDisposition.FileName = "image";
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
-                    response.Content.Headers.ContentLength = fileLength;
+                    response.Content.Headers.ContentLength = profile.ProfilePic.Length;//fileLength;
                     return response;
                 }
                 catch (Exception e)
@@ -90,7 +92,8 @@ namespace PatuhService.Controllers
                 {
                     MsMobileUserProfile profile = db.MsMobileUserProfiles.Where(x => x.UserID == userId).FirstOrDefault();
 
-                          
+
+                    byte[] profImage = null;
 
                     Guid userGuid = System.Guid.NewGuid();
                     string hashedPassword = Security.HashSHA1(password + userGuid.ToString());
@@ -100,8 +103,10 @@ namespace PatuhService.Controllers
                     {
                         if (httpRequest.Files.Count > 0)
                         {
+                             
                             string extention = "";
                             string guid = "";
+                            
                             string[] supportedTypes = new string[] { "jpg", "jpeg", "bmp", "png" };
 
                             foreach (string file in httpRequest.Files)
@@ -112,22 +117,27 @@ namespace PatuhService.Controllers
                                 {
                                     if (postedFile.FileName != "")
                                     {
+                                        profImage = new byte[postedFile.ContentLength];
                                         extention = (Path.GetExtension(postedFile.FileName).TrimStart('.')).ToLower();
 
                                         if (supportedTypes.Contains(extention))
                                         {
-                                            string filePath = Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(postedFile.FileName));
-                                            postedFile.SaveAs(filePath);
                                             guid = DateTime.Now.ToString("yyyyMMddhhmmss") + System.Guid.NewGuid().ToString("n") + Path.GetExtension(postedFile.FileName);
 
-                                            FileInfo TheFile = new FileInfo(filePath);
-                                            if (TheFile.Exists)
-                                            {
-                                                TheFile.MoveTo(Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(guid)));
+                                            //string filePath = Path.Combine(httpRequest.MapPath("~/PhotoUploads"), guid);// Path.GetFileName(postedFile.FileName));
 
-                                            }
+                                            postedFile.InputStream.Read(profImage, 0, postedFile.ContentLength);
+                                            
+                                            //postedFile.SaveAs(filePath);
+                                            
 
-                                            profilePicPath = TheFile.FullName;
+                                            //FileInfo TheFile = new FileInfo(filePath);
+                                            //if (TheFile.Exists)
+                                            //{
+                                            //    TheFile.MoveTo(Path.Combine(httpRequest.MapPath("~/PhotoUploads"), Path.GetFileName(guid)));
+                                            //}
+
+                                            //profilePicPath = TheFile.FullName;
                                         }
                                     }
                                 }
@@ -136,7 +146,10 @@ namespace PatuhService.Controllers
                     }
                     catch (Exception e)
                     {
-
+                        result.status = false;
+                        result.message = e.Message;
+                        result.messageCode = "Error in saving User Profile child";
+                        return result;
                     }
 
                     if (profile == null)
@@ -145,15 +158,17 @@ namespace PatuhService.Controllers
                         db.MsMobileUserProfiles.AddObject(profile);
                     }
 
+
                     profile.UserID = userId;
                     profile.FullName = userName;
                     profile.Email = email;
                     profile.PhoneNo = phoneNo;
                     profile.Location = location;
-                    profile.DOB = DateTime.Now;//DateTime.Parse(birthday);
+                    profile.DOB = string.IsNullOrEmpty(birthday) ? new DateTime() : DateTime.ParseExact(birthday, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
                     profile.Pwd = hashedPassword;
                     profile.UserGuid = userGuid;
                     profile.ProfilePicPath = profilePicPath;
+                    profile.ProfilePic = profImage;
                     profile.dCreated = DateTime.Now;
                     profile.dLastUpdated = DateTime.Now;
                                         

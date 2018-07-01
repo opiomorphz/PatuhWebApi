@@ -103,6 +103,7 @@
           <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="ProfilePicPath" Type="varchar" MaxLength="255" />
+          <Property Name="ProfilePic" Type="varbinary(max)" />
           <Property Name="cCreated" Type="varchar" MaxLength="10" />
           <Property Name="dCreated" Type="datetime" />
           <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
@@ -543,6 +544,7 @@
           <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="dLastUpdated" />
           <Property Type="String" Name="ProfilePicPath" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="ProfilePic" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="MsUser">
           <Key>
@@ -744,6 +746,7 @@
           <EntitySetMapping Name="MsMobileUserProfiles">
             <EntityTypeMapping TypeName="PatuhModel.MsMobileUserProfile">
               <MappingFragment StoreEntitySet="MsMobileUserProfile">
+                <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
                 <ScalarProperty Name="ProfilePicPath" ColumnName="ProfilePicPath" />
                 <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
                 <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
