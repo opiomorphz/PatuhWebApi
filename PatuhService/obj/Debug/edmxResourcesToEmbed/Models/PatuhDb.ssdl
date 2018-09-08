@@ -6,6 +6,14 @@
     <EntitySet Name="MsMobileUserProfile" EntityType="PatuhModel.Store.MsMobileUserProfile" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsModule" EntityType="PatuhModel.Store.MsModule" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsPage" EntityType="PatuhModel.Store.MsPage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsPoints" EntityType="PatuhModel.Store.MsPoints" store:Type="Tables" store:Schema="dbo" store:Name="MsPoints">
+      <DefiningQuery>SELECT 
+      [MsPoints].[Id] AS [Id], 
+      [MsPoints].[ActionCode] AS [ActionCode], 
+      [MsPoints].[ActionDesc] AS [ActionDesc], 
+      [MsPoints].[RewardPoint] AS [RewardPoint]
+      FROM [dbo].[MsPoints] AS [MsPoints]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="MsSerial" EntityType="PatuhModel.Store.MsSerial" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsUser" EntityType="PatuhModel.Store.MsUser" store:Type="Tables" store:Schema="dbo" store:Name="MsUser">
       <DefiningQuery>SELECT 
@@ -27,6 +35,23 @@
     </EntitySet>
     <EntitySet Name="MsUserRole" EntityType="PatuhModel.Store.MsUserRole" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsUserRoleAccess" EntityType="PatuhModel.Store.MsUserRoleAccess" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrArticles" EntityType="PatuhModel.Store.TrArticles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrComments" EntityType="PatuhModel.Store.TrComments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrImageAttachments" EntityType="PatuhModel.Store.TrImageAttachments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrLikes" EntityType="PatuhModel.Store.TrLikes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrPoints" EntityType="PatuhModel.Store.TrPoints" store:Type="Tables" store:Schema="dbo" store:Name="TrPoints">
+      <DefiningQuery>SELECT 
+      [TrPoints].[Id] AS [Id], 
+      [TrPoints].[UserID] AS [UserID], 
+      [TrPoints].[ArticleId] AS [ArticleId], 
+      [TrPoints].[ActionCode] AS [ActionCode], 
+      [TrPoints].[PointValue] AS [PointValue], 
+      [TrPoints].[cCreated] AS [cCreated], 
+      [TrPoints].[dCreated] AS [dCreated], 
+      [TrPoints].[cLastUpdated] AS [cLastUpdated], 
+      [TrPoints].[dLastUpdated] AS [dLastUpdated]
+      FROM [dbo].[TrPoints] AS [TrPoints]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UserActivityLog" EntityType="PatuhModel.Store.UserActivityLog" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Module_Menu[OneToMany]" Association="PatuhModel.Store.FK_Module_Menu[OneToMany]">
       <End Role="MsModule" EntitySet="MsModule" />
@@ -133,6 +158,18 @@
     <Property Name="TsMod" Type="datetime" />
     <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
   </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.MsPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="MsPoints">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ActionCode" Type="varchar" MaxLength="20" />
+    <Property Name="ActionDesc" Type="varchar" MaxLength="150" />
+    <Property Name="RewardPoint" Type="bigint" />
+  </EntityType>
   <EntityType Name="MsSerial">
     <Key>
       <PropertyRef Name="SerialID" />
@@ -201,6 +238,77 @@
     <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
     <Property Name="TsMod" Type="datetime" />
     <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="TrArticles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="varchar" MaxLength="10" />
+    <Property Name="Title" Type="varchar" MaxLength="20" />
+    <Property Name="Story" Type="varchar" MaxLength="255" />
+    <Property Name="GPSLocation" Type="varchar" MaxLength="100" />
+    <Property Name="GPSLong" Type="float" />
+    <Property Name="GPSLat" Type="float" />
+    <Property Name="cStatus" Type="varchar" MaxLength="1" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TrComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="bigint" />
+    <Property Name="Comment" Type="varchar" MaxLength="200" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TrImageAttachments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="Sequence" Type="int" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TrLikes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="bigint" />
+    <Property Name="cStatus" Type="varchar" MaxLength="1" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.TrPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="TrPoints">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="varchar" MaxLength="10" />
+    <Property Name="ArticleId" Type="bigint" />
+    <Property Name="ActionCode" Type="varchar" MaxLength="20" />
+    <Property Name="PointValue" Type="bigint" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
   </EntityType>
   <EntityType Name="UserActivityLog">
     <Key>

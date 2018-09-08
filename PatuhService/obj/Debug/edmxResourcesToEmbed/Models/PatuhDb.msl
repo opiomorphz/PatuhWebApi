@@ -172,5 +172,88 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TrArticles">
+      <EntityTypeMapping TypeName="PatuhModel.TrArticle">
+        <MappingFragment StoreEntitySet="TrArticles">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+          <ScalarProperty Name="GPSLat" ColumnName="GPSLat" />
+          <ScalarProperty Name="GPSLong" ColumnName="GPSLong" />
+          <ScalarProperty Name="GPSLocation" ColumnName="GPSLocation" />
+          <ScalarProperty Name="Story" ColumnName="Story" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrComments">
+      <EntityTypeMapping TypeName="PatuhModel.TrComment">
+        <MappingFragment StoreEntitySet="TrComments">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrImageAttachments">
+      <EntityTypeMapping TypeName="PatuhModel.TrImageAttachment">
+        <MappingFragment StoreEntitySet="TrImageAttachments">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="HeaderId" ColumnName="HeaderId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrLikes">
+      <EntityTypeMapping TypeName="PatuhModel.TrLike">
+        <MappingFragment StoreEntitySet="TrLikes">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsPoints">
+      <EntityTypeMapping TypeName="PatuhModel.MsPoint">
+        <MappingFragment StoreEntitySet="MsPoints">
+          <ScalarProperty Name="RewardPoint" ColumnName="RewardPoint" />
+          <ScalarProperty Name="ActionDesc" ColumnName="ActionDesc" />
+          <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrPoints">
+      <EntityTypeMapping TypeName="PatuhModel.TrPoint">
+        <MappingFragment StoreEntitySet="TrPoints">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="PointValue" ColumnName="PointValue" />
+          <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

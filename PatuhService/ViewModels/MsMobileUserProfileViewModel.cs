@@ -16,5 +16,6 @@ namespace PatuhService.ViewModels
         public string Location { get; set; }
         public string PhoneNo { get; set; }
         public string Email { get; set; }
+        public long PointReward { get; set; }
     }
 }

@@ -91,6 +91,12 @@ namespace PatuhService.Controllers
                             msMobileUserProfileViewModel.Email = matchUser.Email;
 
 
+                            IList<TrPoint> listPoint = db.TrPoints.Where(x => x.UserID == matchUser.UserID).ToList();
+
+                            if (listPoint != null)
+                            {
+                                msMobileUserProfileViewModel.PointReward = (listPoint.Select(x => x.PointValue.Value).Sum());
+                            }
                             loginStatus.userProfile = msMobileUserProfileViewModel;
                         }
 

@@ -45,7 +45,7 @@ namespace PatuhService.Controllers
 
                 try
                 {
-                    Stream stream = new MemoryStream(profile.ProfilePic);   
+                    //Stream stream = new MemoryStream(profile.ProfilePic);   
                     //FileStream fileStream = File.OpenRead(profile.ProfilePicPath);
                     //long fileLength = new FileInfo(profile.ProfilePicPath).Length;
 

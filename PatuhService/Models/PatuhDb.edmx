@@ -11,6 +11,14 @@
           <EntitySet Name="MsMobileUserProfile" EntityType="PatuhModel.Store.MsMobileUserProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MsModule" EntityType="PatuhModel.Store.MsModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MsPage" EntityType="PatuhModel.Store.MsPage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MsPoints" EntityType="PatuhModel.Store.MsPoints" store:Type="Tables" store:Schema="dbo" store:Name="MsPoints">
+            <DefiningQuery>SELECT 
+      [MsPoints].[Id] AS [Id], 
+      [MsPoints].[ActionCode] AS [ActionCode], 
+      [MsPoints].[ActionDesc] AS [ActionDesc], 
+      [MsPoints].[RewardPoint] AS [RewardPoint]
+      FROM [dbo].[MsPoints] AS [MsPoints]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="MsSerial" EntityType="PatuhModel.Store.MsSerial" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MsUser" EntityType="PatuhModel.Store.MsUser" store:Type="Tables" store:Schema="dbo" store:Name="MsUser">
             <DefiningQuery>SELECT 
@@ -32,6 +40,23 @@
           </EntitySet>
           <EntitySet Name="MsUserRole" EntityType="PatuhModel.Store.MsUserRole" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MsUserRoleAccess" EntityType="PatuhModel.Store.MsUserRoleAccess" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrArticles" EntityType="PatuhModel.Store.TrArticles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrComments" EntityType="PatuhModel.Store.TrComments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrImageAttachments" EntityType="PatuhModel.Store.TrImageAttachments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrLikes" EntityType="PatuhModel.Store.TrLikes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrPoints" EntityType="PatuhModel.Store.TrPoints" store:Type="Tables" store:Schema="dbo" store:Name="TrPoints">
+            <DefiningQuery>SELECT 
+      [TrPoints].[Id] AS [Id], 
+      [TrPoints].[UserID] AS [UserID], 
+      [TrPoints].[ArticleId] AS [ArticleId], 
+      [TrPoints].[ActionCode] AS [ActionCode], 
+      [TrPoints].[PointValue] AS [PointValue], 
+      [TrPoints].[cCreated] AS [cCreated], 
+      [TrPoints].[dCreated] AS [dCreated], 
+      [TrPoints].[cLastUpdated] AS [cLastUpdated], 
+      [TrPoints].[dLastUpdated] AS [dLastUpdated]
+      FROM [dbo].[TrPoints] AS [TrPoints]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="UserActivityLog" EntityType="PatuhModel.Store.UserActivityLog" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Module_Menu[OneToMany]" Association="PatuhModel.Store.FK_Module_Menu[OneToMany]">
             <End Role="MsModule" EntitySet="MsModule" />
@@ -138,6 +163,18 @@
           <Property Name="TsMod" Type="datetime" />
           <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.MsPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MsPoints">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ActionCode" Type="varchar" MaxLength="20" />
+          <Property Name="ActionDesc" Type="varchar" MaxLength="150" />
+          <Property Name="RewardPoint" Type="bigint" />
+        </EntityType>
         <EntityType Name="MsSerial">
           <Key>
             <PropertyRef Name="SerialID" />
@@ -206,6 +243,77 @@
           <Property Name="ModUsrID" Type="varchar" MaxLength="20" />
           <Property Name="TsMod" Type="datetime" />
           <Property Name="ActiveFlag" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TrArticles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="varchar" MaxLength="10" />
+          <Property Name="Title" Type="varchar" MaxLength="20" />
+          <Property Name="Story" Type="varchar" MaxLength="255" />
+          <Property Name="GPSLocation" Type="varchar" MaxLength="100" />
+          <Property Name="GPSLong" Type="float" />
+          <Property Name="GPSLat" Type="float" />
+          <Property Name="cStatus" Type="varchar" MaxLength="1" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="bigint" />
+          <Property Name="Comment" Type="varchar" MaxLength="200" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrImageAttachments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HeaderId" Type="bigint" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Sequence" Type="int" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="bigint" />
+          <Property Name="cStatus" Type="varchar" MaxLength="1" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.TrPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TrPoints">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="varchar" MaxLength="10" />
+          <Property Name="ArticleId" Type="bigint" />
+          <Property Name="ActionCode" Type="varchar" MaxLength="20" />
+          <Property Name="PointValue" Type="bigint" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
         </EntityType>
         <EntityType Name="UserActivityLog">
           <Key>
@@ -357,6 +465,12 @@
             <End Role="MsUserRole" EntitySet="MsUserRoles" />
             <End Role="MsUserRoleAccess" EntitySet="MsUserRoleAccesses" />
           </AssociationSet>
+          <EntitySet Name="TrArticles" EntityType="PatuhModel.TrArticle" />
+          <EntitySet Name="TrComments" EntityType="PatuhModel.TrComment" />
+          <EntitySet Name="TrImageAttachments" EntityType="PatuhModel.TrImageAttachment" />
+          <EntitySet Name="TrLikes" EntityType="PatuhModel.TrLike" />
+          <EntitySet Name="MsPoints" EntityType="PatuhModel.MsPoint" />
+          <EntitySet Name="TrPoints" EntityType="PatuhModel.TrPoint" />
         </EntityContainer>
         <EntityType Name="ErrorLog">
           <Key>
@@ -621,6 +735,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TrArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Category" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Title" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Story" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GPSLocation" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="GPSLong" />
+          <Property Type="Double" Name="GPSLat" />
+          <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
+        <EntityType Name="TrComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="ArticleId" />
+          <Property Type="String" Name="Comment" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
+        <EntityType Name="TrImageAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="HeaderId" Nullable="false" />
+          <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="Sequence" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
+        <EntityType Name="TrLike">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="ArticleId" />
+          <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
+        <EntityType Name="MsPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ActionCode" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ActionDesc" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="Int64" Name="RewardPoint" />
+        </EntityType>
+        <EntityType Name="TrPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserID" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="ArticleId" />
+          <Property Type="String" Name="ActionCode" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="PointValue" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -798,6 +989,89 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TrArticles">
+            <EntityTypeMapping TypeName="PatuhModel.TrArticle">
+              <MappingFragment StoreEntitySet="TrArticles">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+                <ScalarProperty Name="GPSLat" ColumnName="GPSLat" />
+                <ScalarProperty Name="GPSLong" ColumnName="GPSLong" />
+                <ScalarProperty Name="GPSLocation" ColumnName="GPSLocation" />
+                <ScalarProperty Name="Story" ColumnName="Story" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrComments">
+            <EntityTypeMapping TypeName="PatuhModel.TrComment">
+              <MappingFragment StoreEntitySet="TrComments">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrImageAttachments">
+            <EntityTypeMapping TypeName="PatuhModel.TrImageAttachment">
+              <MappingFragment StoreEntitySet="TrImageAttachments">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="HeaderId" ColumnName="HeaderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrLikes">
+            <EntityTypeMapping TypeName="PatuhModel.TrLike">
+              <MappingFragment StoreEntitySet="TrLikes">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MsPoints">
+            <EntityTypeMapping TypeName="PatuhModel.MsPoint">
+              <MappingFragment StoreEntitySet="MsPoints">
+                <ScalarProperty Name="RewardPoint" ColumnName="RewardPoint" />
+                <ScalarProperty Name="ActionDesc" ColumnName="ActionDesc" />
+                <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrPoints">
+            <EntityTypeMapping TypeName="PatuhModel.TrPoint">
+              <MappingFragment StoreEntitySet="TrPoints">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="PointValue" ColumnName="PointValue" />
+                <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -818,7 +1092,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="PatuhDb">
+      <Diagram Name="PatuhDb" ZoomLevel="86">
         <EntityTypeShape EntityType="PatuhModel.ErrorLog" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" IsExpanded="true" />
         <EntityTypeShape EntityType="PatuhModel.MsMenu" Width="1.5" PointX="5.25" PointY="9.375" Height="3.5186979166666674" IsExpanded="true" />
         <EntityTypeShape EntityType="PatuhModel.MsModule" Width="1.5" PointX="0.75" PointY="8.125" Height="3.7109993489583317" IsExpanded="true" />
@@ -840,8 +1114,8 @@
         </AssociationConnector>
         <AssociationConnector Association="PatuhModel.FK_Module_UserRole_OneToMany_" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="11.643697916666666" />
-          <ConnectorPoint PointX="1.5" PointY="21.567047526041669" />
-          <ConnectorPoint PointX="3" PointY="21.567047526041669" />
+          <ConnectorPoint PointX="1.5" PointY="21.567047526041666" />
+          <ConnectorPoint PointX="3" PointY="21.567047526041666" />
         </AssociationConnector>
         <EntityTypeShape EntityType="PatuhModel.MsMobileUserProfile" Width="1.5" PointX="5.125" PointY="5.25" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="PatuhModel.MsUser" Width="1.5" PointX="5.25" PointY="19.625" Height="3.9033007812500031" />
@@ -860,6 +1134,12 @@
           <ConnectorPoint PointX="4.125" PointY="17.612597714843751" />
           <ConnectorPoint PointX="5.25" PointY="17.612597714843751" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="PatuhModel.TrArticle" Width="1.5" PointX="7.375" PointY="6.75" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="PatuhModel.TrComment" Width="1.5" PointX="9.375" PointY="0.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="PatuhModel.TrImageAttachment" Width="1.5" PointX="9.375" PointY="4.75" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="PatuhModel.TrLike" Width="1.5" PointX="9.375" PointY="8.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="PatuhModel.MsPoint" Width="1.5" PointX="11.375" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="PatuhModel.TrPoint" Width="1.5" PointX="11.375" PointY="3.75" Height="2.7494921875000031" />
       </Diagram>
     </Diagrams>
   </Designer>

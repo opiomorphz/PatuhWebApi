@@ -4,6 +4,8 @@ D:\SIDE JOB\PatuhService\PatuhService\bin\Antlr3.Runtime.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\EntityFramework.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\Microsoft.Web.Infrastructure.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\Newtonsoft.Json.dll
+D:\SIDE JOB\PatuhService\PatuhService\bin\PagedList.dll
+D:\SIDE JOB\PatuhService\PatuhService\bin\PagedList.Mvc.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Net.Http.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Net.Http.Formatting.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Net.Http.WebRequest.dll
@@ -18,6 +20,8 @@ D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Deployment.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Razor.dll
 D:\SIDE JOB\PatuhService\PatuhService\bin\WebGrease.dll
+D:\SIDE JOB\PatuhService\PatuhService\bin\PagedList.xml
+D:\SIDE JOB\PatuhService\PatuhService\bin\PagedList.Mvc.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\EntityFramework.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\Newtonsoft.Json.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Net.Http.xml
@@ -31,6 +35,6 @@ D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.Razor.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Deployment.xml
 D:\SIDE JOB\PatuhService\PatuhService\bin\System.Web.WebPages.Razor.xml
+D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.csprojResolveAssemblyReference.cache
 D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.dll
 D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.pdb
-D:\SIDE JOB\PatuhService\PatuhService\obj\Debug\PatuhService.csprojResolveAssemblyReference.cache

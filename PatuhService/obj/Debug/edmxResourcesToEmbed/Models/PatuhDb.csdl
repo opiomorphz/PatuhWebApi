@@ -39,6 +39,12 @@
       <End Role="MsUserRole" EntitySet="MsUserRoles" />
       <End Role="MsUserRoleAccess" EntitySet="MsUserRoleAccesses" />
     </AssociationSet>
+    <EntitySet Name="TrArticles" EntityType="PatuhModel.TrArticle" />
+    <EntitySet Name="TrComments" EntityType="PatuhModel.TrComment" />
+    <EntitySet Name="TrImageAttachments" EntityType="PatuhModel.TrImageAttachment" />
+    <EntitySet Name="TrLikes" EntityType="PatuhModel.TrLike" />
+    <EntitySet Name="MsPoints" EntityType="PatuhModel.MsPoint" />
+    <EntitySet Name="TrPoints" EntityType="PatuhModel.TrPoint" />
   </EntityContainer>
   <EntityType Name="ErrorLog">
     <Key>
@@ -303,4 +309,81 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="TrArticle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Category" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Title" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Story" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GPSLocation" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="GPSLong" />
+    <Property Type="Double" Name="GPSLat" />
+    <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+  <EntityType Name="TrComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ArticleId" />
+    <Property Type="String" Name="Comment" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+  <EntityType Name="TrImageAttachment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="HeaderId" Nullable="false" />
+    <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int32" Name="Sequence" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+  <EntityType Name="TrLike">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ArticleId" />
+    <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+  <EntityType Name="MsPoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ActionCode" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActionDesc" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="Int64" Name="RewardPoint" />
+  </EntityType>
+  <EntityType Name="TrPoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ArticleId" />
+    <Property Type="String" Name="ActionCode" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="PointValue" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
 </Schema>
