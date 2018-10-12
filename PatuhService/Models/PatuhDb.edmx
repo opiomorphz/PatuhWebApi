@@ -7,6 +7,23 @@
     <Schema Namespace="PatuhModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="PatuhModelStoreContainer">
           <EntitySet Name="ErrorLog" EntityType="PatuhModel.Store.ErrorLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MsCoupons" EntityType="PatuhModel.Store.MsCoupons" store:Type="Tables" store:Schema="dbo" store:Name="MsCoupons">
+            <DefiningQuery>SELECT 
+      [MsCoupons].[Id] AS [Id], 
+      [MsCoupons].[Title] AS [Title], 
+      [MsCoupons].[Benefit] AS [Benefit], 
+      [MsCoupons].[Usage] AS [Usage], 
+      [MsCoupons].[Tnc] AS [Tnc], 
+      [MsCoupons].[PointNeeded] AS [PointNeeded], 
+      [MsCoupons].[ValidUntil] AS [ValidUntil], 
+      [MsCoupons].[CouponImage] AS [CouponImage], 
+      [MsCoupons].[cStatus] AS [cStatus], 
+      [MsCoupons].[cCreated] AS [cCreated], 
+      [MsCoupons].[dCreated] AS [dCreated], 
+      [MsCoupons].[cLastUpdated] AS [cLastUpdated], 
+      [MsCoupons].[dLastUpdated] AS [dLastUpdated]
+      FROM [dbo].[MsCoupons] AS [MsCoupons]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="MsMenu" EntityType="PatuhModel.Store.MsMenu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MsMobileUserProfile" EntityType="PatuhModel.Store.MsMobileUserProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MsModule" EntityType="PatuhModel.Store.MsModule" store:Type="Tables" Schema="dbo" />
@@ -44,18 +61,19 @@
           <EntitySet Name="TrComments" EntityType="PatuhModel.Store.TrComments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TrImageAttachments" EntityType="PatuhModel.Store.TrImageAttachments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TrLikes" EntityType="PatuhModel.Store.TrLikes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TrPoints" EntityType="PatuhModel.Store.TrPoints" store:Type="Tables" store:Schema="dbo" store:Name="TrPoints">
+          <EntitySet Name="TrPoints" EntityType="PatuhModel.Store.TrPoints" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrUserCoupons" EntityType="PatuhModel.Store.TrUserCoupons" store:Type="Tables" store:Schema="dbo" store:Name="TrUserCoupons">
             <DefiningQuery>SELECT 
-      [TrPoints].[Id] AS [Id], 
-      [TrPoints].[UserID] AS [UserID], 
-      [TrPoints].[ArticleId] AS [ArticleId], 
-      [TrPoints].[ActionCode] AS [ActionCode], 
-      [TrPoints].[PointValue] AS [PointValue], 
-      [TrPoints].[cCreated] AS [cCreated], 
-      [TrPoints].[dCreated] AS [dCreated], 
-      [TrPoints].[cLastUpdated] AS [cLastUpdated], 
-      [TrPoints].[dLastUpdated] AS [dLastUpdated]
-      FROM [dbo].[TrPoints] AS [TrPoints]</DefiningQuery>
+      [TrUserCoupons].[Id] AS [Id], 
+      [TrUserCoupons].[UserID] AS [UserID], 
+      [TrUserCoupons].[MsCouponId] AS [MsCouponId], 
+      [TrUserCoupons].[CouponCode] AS [CouponCode], 
+      [TrUserCoupons].[cStatus] AS [cStatus], 
+      [TrUserCoupons].[cCreated] AS [cCreated], 
+      [TrUserCoupons].[dCreated] AS [dCreated], 
+      [TrUserCoupons].[cLastUpdated] AS [cLastUpdated], 
+      [TrUserCoupons].[dLastUpdated] AS [dLastUpdated]
+      FROM [dbo].[TrUserCoupons] AS [TrUserCoupons]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserActivityLog" EntityType="PatuhModel.Store.UserActivityLog" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Module_Menu[OneToMany]" Association="PatuhModel.Store.FK_Module_Menu[OneToMany]">
@@ -97,6 +115,27 @@
           <Property Name="ErrorMessage" Type="varchar" Nullable="false" />
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.MsCoupons' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MsCoupons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+          <Property Name="Benefit" Type="varchar(max)" />
+          <Property Name="Usage" Type="varchar(max)" />
+          <Property Name="Tnc" Type="varchar(max)" />
+          <Property Name="PointNeeded" Type="bigint" />
+          <Property Name="ValidUntil" Type="datetime" />
+          <Property Name="CouponImage" Type="varbinary(max)" />
+          <Property Name="cStatus" Type="varchar" MaxLength="1" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
         </EntityType>
         <EntityType Name="MsMenu">
           <Key>
@@ -298,9 +337,6 @@
           <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
           <Property Name="dLastUpdated" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'Patuh.dbo.TrPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="TrPoints">
           <Key>
             <PropertyRef Name="Id" />
@@ -310,6 +346,23 @@
           <Property Name="ArticleId" Type="bigint" />
           <Property Name="ActionCode" Type="varchar" MaxLength="20" />
           <Property Name="PointValue" Type="bigint" />
+          <Property Name="cCreated" Type="varchar" MaxLength="20" />
+          <Property Name="dCreated" Type="datetime" />
+          <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+          <Property Name="dLastUpdated" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.TrUserCoupons' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TrUserCoupons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="varchar" MaxLength="10" />
+          <Property Name="MsCouponId" Type="bigint" />
+          <Property Name="CouponCode" Type="varchar" MaxLength="100" />
+          <Property Name="cStatus" Type="varchar" MaxLength="1" />
           <Property Name="cCreated" Type="varchar" MaxLength="20" />
           <Property Name="dCreated" Type="datetime" />
           <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
@@ -471,6 +524,8 @@
           <EntitySet Name="TrLikes" EntityType="PatuhModel.TrLike" />
           <EntitySet Name="MsPoints" EntityType="PatuhModel.MsPoint" />
           <EntitySet Name="TrPoints" EntityType="PatuhModel.TrPoint" />
+          <EntitySet Name="TrUserCoupons" EntityType="PatuhModel.TrUserCoupon" />
+          <EntitySet Name="MsCoupons" EntityType="PatuhModel.MsCoupon" />
         </EntityContainer>
         <EntityType Name="ErrorLog">
           <Key>
@@ -812,6 +867,38 @@
           <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="dLastUpdated" />
         </EntityType>
+        <EntityType Name="TrUserCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserID" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="MsCouponId" />
+          <Property Type="String" Name="CouponCode" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
+        <EntityType Name="MsCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Benefit" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Usage" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Tnc" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="PointNeeded" />
+          <Property Type="DateTime" Name="ValidUntil" />
+          <Property Type="Binary" Name="CouponImage" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dCreated" />
+          <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dLastUpdated" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1072,6 +1159,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TrUserCoupons">
+            <EntityTypeMapping TypeName="PatuhModel.TrUserCoupon">
+              <MappingFragment StoreEntitySet="TrUserCoupons">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="MsCouponId" ColumnName="MsCouponId" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MsCoupons">
+            <EntityTypeMapping TypeName="PatuhModel.MsCoupon">
+              <MappingFragment StoreEntitySet="MsCoupons">
+                <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+                <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+                <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+                <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+                <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+                <ScalarProperty Name="CouponImage" ColumnName="CouponImage" />
+                <ScalarProperty Name="ValidUntil" ColumnName="ValidUntil" />
+                <ScalarProperty Name="PointNeeded" ColumnName="PointNeeded" />
+                <ScalarProperty Name="Tnc" ColumnName="Tnc" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1140,6 +1261,8 @@
         <EntityTypeShape EntityType="PatuhModel.TrLike" Width="1.5" PointX="9.375" PointY="8.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="PatuhModel.MsPoint" Width="1.5" PointX="11.375" PointY="0.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="PatuhModel.TrPoint" Width="1.5" PointX="11.375" PointY="3.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="PatuhModel.TrUserCoupon" Width="1.5" PointX="7.375" PointY="12.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="PatuhModel.MsCoupon" Width="1.5" PointX="11.375" PointY="7.75" Height="3.5186979166666674" />
       </Diagram>
     </Diagrams>
   </Designer>

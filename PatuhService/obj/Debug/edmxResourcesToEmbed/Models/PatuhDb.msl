@@ -255,5 +255,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TrUserCoupons">
+      <EntityTypeMapping TypeName="PatuhModel.TrUserCoupon">
+        <MappingFragment StoreEntitySet="TrUserCoupons">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+          <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+          <ScalarProperty Name="MsCouponId" ColumnName="MsCouponId" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MsCoupons">
+      <EntityTypeMapping TypeName="PatuhModel.MsCoupon">
+        <MappingFragment StoreEntitySet="MsCoupons">
+          <ScalarProperty Name="dLastUpdated" ColumnName="dLastUpdated" />
+          <ScalarProperty Name="cLastUpdated" ColumnName="cLastUpdated" />
+          <ScalarProperty Name="dCreated" ColumnName="dCreated" />
+          <ScalarProperty Name="cCreated" ColumnName="cCreated" />
+          <ScalarProperty Name="cStatus" ColumnName="cStatus" />
+          <ScalarProperty Name="CouponImage" ColumnName="CouponImage" />
+          <ScalarProperty Name="ValidUntil" ColumnName="ValidUntil" />
+          <ScalarProperty Name="PointNeeded" ColumnName="PointNeeded" />
+          <ScalarProperty Name="Tnc" ColumnName="Tnc" />
+          <ScalarProperty Name="Usage" ColumnName="Usage" />
+          <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -133,6 +133,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\RewardPointController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\LikeController.cs" />
@@ -151,6 +152,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Security.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\UserCouponViewModel.cs" />
+    <Compile Include="ViewModels\CouponViewModel.cs" />
     <Compile Include="ViewModels\MsMobileUserProfileViewModel.cs" />
     <Compile Include="ViewModels\LoginCredentialViewModel.cs" />
     <Compile Include="ViewModels\JsonResultViewModel.cs" />

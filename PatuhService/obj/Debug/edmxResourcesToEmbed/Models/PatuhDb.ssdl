@@ -2,6 +2,23 @@
 <Schema Namespace="PatuhModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="PatuhModelStoreContainer">
     <EntitySet Name="ErrorLog" EntityType="PatuhModel.Store.ErrorLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsCoupons" EntityType="PatuhModel.Store.MsCoupons" store:Type="Tables" store:Schema="dbo" store:Name="MsCoupons">
+      <DefiningQuery>SELECT 
+      [MsCoupons].[Id] AS [Id], 
+      [MsCoupons].[Title] AS [Title], 
+      [MsCoupons].[Benefit] AS [Benefit], 
+      [MsCoupons].[Usage] AS [Usage], 
+      [MsCoupons].[Tnc] AS [Tnc], 
+      [MsCoupons].[PointNeeded] AS [PointNeeded], 
+      [MsCoupons].[ValidUntil] AS [ValidUntil], 
+      [MsCoupons].[CouponImage] AS [CouponImage], 
+      [MsCoupons].[cStatus] AS [cStatus], 
+      [MsCoupons].[cCreated] AS [cCreated], 
+      [MsCoupons].[dCreated] AS [dCreated], 
+      [MsCoupons].[cLastUpdated] AS [cLastUpdated], 
+      [MsCoupons].[dLastUpdated] AS [dLastUpdated]
+      FROM [dbo].[MsCoupons] AS [MsCoupons]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="MsMenu" EntityType="PatuhModel.Store.MsMenu" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsMobileUserProfile" EntityType="PatuhModel.Store.MsMobileUserProfile" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MsModule" EntityType="PatuhModel.Store.MsModule" store:Type="Tables" Schema="dbo" />
@@ -39,18 +56,19 @@
     <EntitySet Name="TrComments" EntityType="PatuhModel.Store.TrComments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TrImageAttachments" EntityType="PatuhModel.Store.TrImageAttachments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TrLikes" EntityType="PatuhModel.Store.TrLikes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TrPoints" EntityType="PatuhModel.Store.TrPoints" store:Type="Tables" store:Schema="dbo" store:Name="TrPoints">
+    <EntitySet Name="TrPoints" EntityType="PatuhModel.Store.TrPoints" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrUserCoupons" EntityType="PatuhModel.Store.TrUserCoupons" store:Type="Tables" store:Schema="dbo" store:Name="TrUserCoupons">
       <DefiningQuery>SELECT 
-      [TrPoints].[Id] AS [Id], 
-      [TrPoints].[UserID] AS [UserID], 
-      [TrPoints].[ArticleId] AS [ArticleId], 
-      [TrPoints].[ActionCode] AS [ActionCode], 
-      [TrPoints].[PointValue] AS [PointValue], 
-      [TrPoints].[cCreated] AS [cCreated], 
-      [TrPoints].[dCreated] AS [dCreated], 
-      [TrPoints].[cLastUpdated] AS [cLastUpdated], 
-      [TrPoints].[dLastUpdated] AS [dLastUpdated]
-      FROM [dbo].[TrPoints] AS [TrPoints]</DefiningQuery>
+      [TrUserCoupons].[Id] AS [Id], 
+      [TrUserCoupons].[UserID] AS [UserID], 
+      [TrUserCoupons].[MsCouponId] AS [MsCouponId], 
+      [TrUserCoupons].[CouponCode] AS [CouponCode], 
+      [TrUserCoupons].[cStatus] AS [cStatus], 
+      [TrUserCoupons].[cCreated] AS [cCreated], 
+      [TrUserCoupons].[dCreated] AS [dCreated], 
+      [TrUserCoupons].[cLastUpdated] AS [cLastUpdated], 
+      [TrUserCoupons].[dLastUpdated] AS [dLastUpdated]
+      FROM [dbo].[TrUserCoupons] AS [TrUserCoupons]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UserActivityLog" EntityType="PatuhModel.Store.UserActivityLog" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Module_Menu[OneToMany]" Association="PatuhModel.Store.FK_Module_Menu[OneToMany]">
@@ -92,6 +110,27 @@
     <Property Name="ErrorMessage" Type="varchar" Nullable="false" />
     <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.MsCoupons' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="MsCoupons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="varchar" MaxLength="250" />
+    <Property Name="Benefit" Type="varchar(max)" />
+    <Property Name="Usage" Type="varchar(max)" />
+    <Property Name="Tnc" Type="varchar(max)" />
+    <Property Name="PointNeeded" Type="bigint" />
+    <Property Name="ValidUntil" Type="datetime" />
+    <Property Name="CouponImage" Type="varbinary(max)" />
+    <Property Name="cStatus" Type="varchar" MaxLength="1" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
   </EntityType>
   <EntityType Name="MsMenu">
     <Key>
@@ -293,9 +332,6 @@
     <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
     <Property Name="dLastUpdated" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'Patuh.dbo.TrPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="TrPoints">
     <Key>
       <PropertyRef Name="Id" />
@@ -305,6 +341,23 @@
     <Property Name="ArticleId" Type="bigint" />
     <Property Name="ActionCode" Type="varchar" MaxLength="20" />
     <Property Name="PointValue" Type="bigint" />
+    <Property Name="cCreated" Type="varchar" MaxLength="20" />
+    <Property Name="dCreated" Type="datetime" />
+    <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />
+    <Property Name="dLastUpdated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Patuh.dbo.TrUserCoupons' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="TrUserCoupons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="varchar" MaxLength="10" />
+    <Property Name="MsCouponId" Type="bigint" />
+    <Property Name="CouponCode" Type="varchar" MaxLength="100" />
+    <Property Name="cStatus" Type="varchar" MaxLength="1" />
     <Property Name="cCreated" Type="varchar" MaxLength="20" />
     <Property Name="dCreated" Type="datetime" />
     <Property Name="cLastUpdated" Type="varchar" MaxLength="20" />

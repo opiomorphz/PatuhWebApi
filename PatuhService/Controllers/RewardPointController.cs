@@ -27,13 +27,20 @@ namespace PatuhService.Controllers
 
         public object Get(string UserID)
         {
+            Int64 pointsEarned = 0;
             using (PatuhEntities db = new PatuhEntities())
             {
+                IList<TrPoint> listPoint = db.TrPoints.Where(x => x.UserID == UserID).ToList();
 
-                Int64 pointsEarned = db.TrPoints.Where(x => x.UserID == UserID).DefaultIfEmpty(new TrPoint()).Select(x => x.PointValue.Value).Sum();
+                if (listPoint != null)
+                {
+                    pointsEarned = (listPoint.Select(x => x.PointValue.Value).Sum());
+                }
+
+                //Int64 pointsEarned = db.TrPoints.Where(x => x.UserID == UserID).DefaultIfEmpty(new TrPoint()).Select(x => x.PointValue.Value).Sum();
 
 
-                return pointsEarned;
+                return new {point = pointsEarned};
             }
 
         }

@@ -45,6 +45,8 @@
     <EntitySet Name="TrLikes" EntityType="PatuhModel.TrLike" />
     <EntitySet Name="MsPoints" EntityType="PatuhModel.MsPoint" />
     <EntitySet Name="TrPoints" EntityType="PatuhModel.TrPoint" />
+    <EntitySet Name="TrUserCoupons" EntityType="PatuhModel.TrUserCoupon" />
+    <EntitySet Name="MsCoupons" EntityType="PatuhModel.MsCoupon" />
   </EntityContainer>
   <EntityType Name="ErrorLog">
     <Key>
@@ -381,6 +383,38 @@
     <Property Type="Int64" Name="ArticleId" />
     <Property Type="String" Name="ActionCode" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="Int64" Name="PointValue" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+  <EntityType Name="TrUserCoupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MsCouponId" />
+    <Property Type="String" Name="CouponCode" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dCreated" />
+    <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dLastUpdated" />
+  </EntityType>
+  <EntityType Name="MsCoupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Benefit" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Usage" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Tnc" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="PointNeeded" />
+    <Property Type="DateTime" Name="ValidUntil" />
+    <Property Type="Binary" Name="CouponImage" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="cStatus" MaxLength="1" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="cCreated" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="dCreated" />
     <Property Type="String" Name="cLastUpdated" MaxLength="20" FixedLength="false" Unicode="false" />
