@@ -59,7 +59,7 @@ namespace PatuhService.Controllers
             result.messageCode = "S";
 
             var httpRequest = HttpContext.Current.Request;
-            string id = httpRequest["ArticleId"];
+            string id = httpRequest["Id"];
             long articleId = string.IsNullOrEmpty(httpRequest["ArticleId"]) ? 0 : long.Parse(httpRequest["ArticleId"]);
             string status = httpRequest["Status"];
             string userId = httpRequest["userId"];

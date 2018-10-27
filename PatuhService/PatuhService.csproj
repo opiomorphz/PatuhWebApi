@@ -137,6 +137,7 @@
     <Compile Include="Controllers\RewardPointController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
